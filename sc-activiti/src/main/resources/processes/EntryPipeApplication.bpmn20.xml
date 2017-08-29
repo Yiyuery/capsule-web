@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/processdef">
+  <process id="entryPipeApplication" name="入廊申请工作流" isExecutable="true">
+    <documentation>入廊申请工作流</documentation>
+    <userTask id="deptVerifyTask" name="部门领导审核" activiti:assignee="${deptUserId}">
+      <extensionElements>
+        <activiti:formProperty id="applyDeptApproved" name="是否同意此次申请?" type="long" expression="部门审批:1同意，0不同意" required="true"></activiti:formProperty>
+        <activiti:formProperty id="deptOpinion" name="部门负责人审核意见" type="string"></activiti:formProperty>
+        <activiti:formProperty id="opcUserId" name="运维中心审核人ID" type="long" required="true"></activiti:formProperty>
+        <modeler:initiator-can-complete xmlns:modeler="http://activiti.com/modeler"><![CDATA[false]]></modeler:initiator-can-complete>
+      </extensionElements>
+    </userTask>
+    <userTask id="opcVerifyTask" name="运维中心审核" activiti:assignee="${opcUserId}">
+      <extensionElements>
+        <activiti:formProperty id="applyOpcApproved" name="是否同意该申请？" type="long" expression="运维中心审批：0不同意，1：同意" required="true"></activiti:formProperty>
+        <activiti:formProperty id="opcOpinion" name="运维中心审核意见" type="string"></activiti:formProperty>
+        <activiti:formProperty id="adminUserId" name="行政部门审核人ID" type="long" required="true"></activiti:formProperty>
+        <modeler:initiator-can-complete xmlns:modeler="http://activiti.com/modeler"><![CDATA[false]]></modeler:initiator-can-complete>
+      </extensionElements>
+    </userTask>
+    <userTask id="adminVerifyTask" name="行政部门审核" activiti:assignee="${adminUserId}">
+      <extensionElements>
+        <activiti:formProperty id="applyAdminApproved" name="是否同意此次申请?" type="long" expression="行政部门审批:1同意，0不同意" required="true"></activiti:formProperty>
+        <activiti:formProperty id="adminOpinion" name="行政部门审核意见" type="string"></activiti:formProperty>
+        <modeler:initiator-can-complete xmlns:modeler="http://activiti.com/modeler"><![CDATA[false]]></modeler:initiator-can-complete>
+      </extensionElements>
+    </userTask>
+    <endEvent id="endApplyTask" name="入廊申请结束"></endEvent>
+    <exclusiveGateway id="ExcluDept"></exclusiveGateway>
+    <exclusiveGateway id="ExcluOpc"></exclusiveGateway>
+    <exclusiveGateway id="ExcluAdmin"></exclusiveGateway>
+    <sequenceFlow id="f5" sourceRef="opcVerifyTask" targetRef="ExcluOpc"></sequenceFlow>
+    <sequenceFlow id="f7" name="同意" sourceRef="ExcluOpc" targetRef="adminVerifyTask">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${applyOpcApproved == 1}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="f8" sourceRef="adminVerifyTask" targetRef="ExcluAdmin"></sequenceFlow>
+    <sequenceFlow id="f9" name="不同意" sourceRef="ExcluAdmin" targetRef="startApplyTask">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${applyAdminApproved==0}]]></conditionExpression>
+    </sequenceFlow>
+    <startEvent id="startEvent" name="开始">
+      <extensionElements>
+        <activiti:formProperty id="startUserId" name="发起者" type="long" required="true"></activiti:formProperty>
+        <activiti:formProperty id="processSN" name="单号" type="string"></activiti:formProperty>
+      </extensionElements>
+    </startEvent>
+    <userTask id="startApplyTask" name="发起入廊申请">
+      <extensionElements>
+        <activiti:formProperty id="applyUserId" name="申请人" type="long" required="true"></activiti:formProperty>
+        <activiti:formProperty id="applyType" name="入廊申请类型" type="long" expression="0一般入廊申请；1管廊入线申请" required="true"></activiti:formProperty>
+        <activiti:formProperty id="gmtApply" name="申请时间" type="date" datePattern="yyyy-MM-dd HH:mm:ss" required="true"></activiti:formProperty>
+        <activiti:formProperty id="utId" name="作业管廊ID" type="long" required="true"></activiti:formProperty>
+        <activiti:formProperty id="cabinId" name="作业舱室" type="long"></activiti:formProperty>
+        <activiti:formProperty id="gmtEnter" name="入廊时间" type="date" expression="与施工开始时间一致" datePattern="yyyy-MM-dd HH:mm:ss" required="true"></activiti:formProperty>
+        <activiti:formProperty id="opNorm" name="作业规范" type="string"></activiti:formProperty>
+        <activiti:formProperty id="speOpType" name="特殊作业" type="string" expression="类型：动火、动土、吊装"></activiti:formProperty>
+        <activiti:formProperty id="opNormResid" name="作业规范资源ID" type="string"></activiti:formProperty>
+        <activiti:formProperty id="speOpResids" name="特殊作业证书资源ID集合" type="string"></activiti:formProperty>
+        <activiti:formProperty id="timeLen" name="作业时长" type="long" expression="（单位：小时)"></activiti:formProperty>
+        <activiti:formProperty id="opNormType" name="作业类型" type="long" expression="类型：入廊检修、外部督导、参观考察"></activiti:formProperty>
+        <activiti:formProperty id="pipelineType" name="管线类型" type="long"></activiti:formProperty>
+        <activiti:formProperty id="pipelineCompany" name="管线单位" type="string"></activiti:formProperty>
+        <activiti:formProperty id="pipelinePhone" name="管线单位联系电话" type="string"></activiti:formProperty>
+        <activiti:formProperty id="conCompany" name="施工单位" type="string"></activiti:formProperty>
+        <activiti:formProperty id="conCompanyPhone" name="施工单位联系电话" type="string"></activiti:formProperty>
+        <activiti:formProperty id="dutyMember" name="施工单位负责人" type="string"></activiti:formProperty>
+        <activiti:formProperty id="dutyMemberPhone" name="施工单位负责人联系电话" type="string"></activiti:formProperty>
+        <activiti:formProperty id="siteStart" name="起始位置" type="long"></activiti:formProperty>
+        <activiti:formProperty id="siteEnd" name="结束位置" type="long"></activiti:formProperty>
+        <activiti:formProperty id="gmtEnd" name="结束时间" type="date" datePattern="yyyy-MM-dd HH:mm:ss"></activiti:formProperty>
+        <activiti:formProperty id="deptUserId" name="部门审核人ID" type="long"></activiti:formProperty>
+        <activiti:formProperty id="enterMemberList" name="入廊人员集合" type="string"></activiti:formProperty>
+        <activiti:formProperty id="enterSpeDevList" name="特殊设备集合" type="string"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="f4" name="同意" sourceRef="ExcluDept" targetRef="opcVerifyTask">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${applyDeptApproved == 1}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="f1" sourceRef="startApplyTask" targetRef="deptVerifyTask"></sequenceFlow>
+    <sequenceFlow id="f3" name="不同意" sourceRef="ExcluDept" targetRef="startApplyTask">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${applyDeptApproved == 0}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="f10" name="同意" sourceRef="ExcluAdmin" targetRef="endApplyTask">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${applyAdminApproved ==1}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="f2" sourceRef="deptVerifyTask" targetRef="ExcluDept"></sequenceFlow>
+    <sequenceFlow id="f0" sourceRef="startEvent" targetRef="startApplyTask"></sequenceFlow>
+    <sequenceFlow id="f6" name="不同意" sourceRef="ExcluOpc" targetRef="startApplyTask">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${applyOpcApproved == 0}]]></conditionExpression>
+    </sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_entryPipeApplication">
+    <bpmndi:BPMNPlane bpmnElement="entryPipeApplication" id="BPMNPlane_entryPipeApplication">
+      <bpmndi:BPMNShape bpmnElement="deptVerifyTask" id="BPMNShape_deptVerifyTask">
+        <omgdc:Bounds height="80.0" width="100.0" x="345.0" y="145.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="opcVerifyTask" id="BPMNShape_opcVerifyTask">
+        <omgdc:Bounds height="80.0" width="100.0" x="555.0" y="225.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="adminVerifyTask" id="BPMNShape_adminVerifyTask">
+        <omgdc:Bounds height="80.0" width="100.0" x="780.0" y="315.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endApplyTask" id="BPMNShape_endApplyTask">
+        <omgdc:Bounds height="28.0" width="28.0" x="1105.0" y="416.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="ExcluDept" id="BPMNShape_ExcluDept">
+        <omgdc:Bounds height="40.0" width="40.0" x="475.0" y="245.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="ExcluOpc" id="BPMNShape_ExcluOpc">
+        <omgdc:Bounds height="40.0" width="40.0" x="685.0" y="335.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="ExcluAdmin" id="BPMNShape_ExcluAdmin">
+        <omgdc:Bounds height="40.0" width="40.0" x="925.0" y="410.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="startEvent" id="BPMNShape_startEvent">
+        <omgdc:Bounds height="30.0" width="30.0" x="45.0" y="170.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="startApplyTask" id="BPMNShape_startApplyTask">
+        <omgdc:Bounds height="80.0" width="100.0" x="165.0" y="145.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="f6" id="BPMNEdge_f6">
+        <omgdi:waypoint x="685.5" y="355.5"></omgdi:waypoint>
+        <omgdi:waypoint x="222.5" y="355.5"></omgdi:waypoint>
+        <omgdi:waypoint x="222.5" y="225.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="f7" id="BPMNEdge_f7">
+        <omgdi:waypoint x="724.5766129032259" y="355.4233870967742"></omgdi:waypoint>
+        <omgdi:waypoint x="780.0" y="355.2008032128514"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="f8" id="BPMNEdge_f8">
+        <omgdi:waypoint x="880.0" y="355.0"></omgdi:waypoint>
+        <omgdi:waypoint x="945.5" y="355.0"></omgdi:waypoint>
+        <omgdi:waypoint x="945.5" y="410.5"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="f9" id="BPMNEdge_f9">
+        <omgdi:waypoint x="925.5" y="430.5"></omgdi:waypoint>
+        <omgdi:waypoint x="190.0" y="430.5"></omgdi:waypoint>
+        <omgdi:waypoint x="190.0" y="225.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="f10" id="BPMNEdge_f10">
+        <omgdi:waypoint x="964.5549132947976" y="430.4450867052023"></omgdi:waypoint>
+        <omgdi:waypoint x="1105.0000581348272" y="430.04034565379015"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="f1" id="BPMNEdge_f1">
+        <omgdi:waypoint x="265.0" y="185.0"></omgdi:waypoint>
+        <omgdi:waypoint x="345.0" y="185.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="f0" id="BPMNEdge_f0">
+        <omgdi:waypoint x="75.0" y="185.0"></omgdi:waypoint>
+        <omgdi:waypoint x="165.0" y="185.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="f3" id="BPMNEdge_f3">
+        <omgdi:waypoint x="475.5" y="265.5"></omgdi:waypoint>
+        <omgdi:waypoint x="252.5" y="265.5"></omgdi:waypoint>
+        <omgdi:waypoint x="252.5" y="225.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="f2" id="BPMNEdge_f2">
+        <omgdi:waypoint x="445.0" y="185.0"></omgdi:waypoint>
+        <omgdi:waypoint x="495.0" y="185.0"></omgdi:waypoint>
+        <omgdi:waypoint x="495.0" y="245.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="f5" id="BPMNEdge_f5">
+        <omgdi:waypoint x="655.0" y="265.0"></omgdi:waypoint>
+        <omgdi:waypoint x="705.5" y="265.0"></omgdi:waypoint>
+        <omgdi:waypoint x="705.5" y="335.5"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="f4" id="BPMNEdge_f4">
+        <omgdi:waypoint x="514.5871559633027" y="265.41284403669727"></omgdi:waypoint>
+        <omgdi:waypoint x="555.0" y="265.2283105022831"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

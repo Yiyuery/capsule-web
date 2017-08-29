@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans   http://www.springframework.org/schema/beans/spring-beans.xsd">
+ 
+ <bean id="processEngineConfiguration" class="org.activiti.engine.impl.cfg.StandaloneProcessEngineConfiguration">	    
+	 <!-- 连接数据的配置 -->
+    <property name="jdbcDriver" value="com.mysql.jdbc.Driver"></property>
+	<property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/DB_SC_ACTIVITI?characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull"></property>
+	<property name="jdbcUsername" value="showclear"></property>
+	<property name="jdbcPassword" value="showclear"></property>   
+	<property name="databaseSchemaUpdate" value="true" />
+	<property name="history" value="full" />
+	<property name="processDefinitionCacheLimit" value="10" />
+	<property name="activityFontName" value="宋体"/>
+	<property name="labelFontName" value="宋体"/>
+  </bean>
+   
+</beans>
