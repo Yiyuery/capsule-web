@@ -1,10 +1,10 @@
-# capsule-web 编译环境
-  
-  JDK 1.8
-  Tomcat7 .0
-  Activiti 6.0.0
+# capsule-web 编译环境  
+      1. JDK 1.8
+      2. Tomcat7 .0
+      3. Activiti 6.0.0
 
 # github 项目导出
+
     1. 新建文件夹 sc-workspace
     2. Idea 打开文件夹 sc-workspace
     3. VCS -> Checkout from Version Control -> GitHub
