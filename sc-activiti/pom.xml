@@ -146,6 +146,20 @@
                 </configuration>
             </plugin>
 
+            <!-- 合并打包 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <overlays>
+                        <overlay>
+                            <groupId>cn.com.showclear</groupId>
+                            <artifactId>sc-activiti</artifactId>
+                        </overlay>
+                    </overlays>
+                    <warName>sc-web</warName>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
