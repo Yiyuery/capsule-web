@@ -28,9 +28,17 @@
 
 	<dependencies>
 
+		<!-- 添加模块间依赖 -->
 		<dependency>
 			<groupId>cn.com.showclear</groupId>
 			<artifactId>activiti</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<type>war</type>
+		</dependency>
+
+		<dependency>
+			<groupId>cn.com.showclear</groupId>
+			<artifactId>icooper</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 			<type>war</type>
 		</dependency>
@@ -57,9 +65,15 @@
 		</dependency>
 
 		<!-- freemarker模板引擎 -->
+		<!--<dependency>-->
+		<!--<groupId>org.springframework.boot</groupId>-->
+		<!--<artifactId>spring-boot-starter-freemarker</artifactId>-->
+		<!--</dependency>-->
+
+		<!-- thymeleaf模板引擎 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-freemarker</artifactId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 
 		<dependency>
@@ -109,7 +123,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 
-			<!-- 合并编译 -->
+			<!-- 合并编译打包 -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
@@ -118,6 +132,10 @@
 						<overlay>
 							<groupId>cn.com.showclear</groupId>
 							<artifactId>activiti</artifactId>
+						</overlay>
+						<overlay>
+							<groupId>cn.com.showclear</groupId>
+							<artifactId>icooper</artifactId>
 						</overlay>
 					</overlays>
 					<warName>sc-web</warName>
