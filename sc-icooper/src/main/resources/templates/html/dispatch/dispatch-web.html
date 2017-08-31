@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>DispatchWeb</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link type="text/css" rel="stylesheet" href="${contextPath}/lib/zTree_v3-master/css/zTreeStyle/zTreeStyle.css"/>
+    <script type="text/javascript">
+        window.main = window.main || {};
+        window.main.contextPath = '${contextPath}';
+    </script>
+    <script src="${contextPath}/lib/require/require.js"></script>
+    <script type="text/javascript" src="${contextPath}/js/require-config.js"></script>
+    <script>
+        requirejs(['${contextPath}/js/dispatch-web/dispatch-web.js'])
+    </script>
+</head>
+<body>
+
+</body>
+</html>

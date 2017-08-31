@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!--数据库驱动-->
+    <classPathEntry    location="F:\Ashe\_code\jar\mybatis-generator-mybatis自动生成代码\v1\mysql-connector-java-5.1.40.jar"/>
+    <!--  flat 模式不会产生blobs类-->
+    <context id="scooper"   defaultModelType="flat" targetRuntime="MyBatis3">
+        <commentGenerator>
+			<property name="javaFileEncoding" value="UTF-8" />  
+            <property name="suppressDate" value="false"/>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+       <!-- 数据库链接地址账号密码-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1/DB_SC_CAPSULE?useSSL=true" userId="showclear" password="showclear">
+        </jdbcConnection>
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <!--生成Model类存放位置-->
+        <javaModelGenerator targetPackage="cn.com.showclear.activiti.pojo.capsule" targetProject="src\main\java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!--生成映射文件存放位置-->
+        <sqlMapGenerator targetPackage="capsule" targetProject="src\main\resources\mappers">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <!--生成Dao类存放位置-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="cn.com.showclear.activiti.dao.capsule" targetProject="src\main\java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+        <!--生成对应表及类名-->
+        <table tableName="T_USER" domainObjectName="TUser" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" ></table>
+
+
+
+
+
+
+
+    </context>
+</generatorConfiguration>

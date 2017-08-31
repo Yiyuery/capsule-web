@@ -1,0 +1,56 @@
+# 服务器端口
+server:
+  port: 8080
+  session-timeout: 30
+  tomcat.max-threads: 0
+  tomcat.uri-encoding: UTF-8
+
+# 主数据源，默认的
+# 其中主数据源在Spring中的beanName默认为dataSource
+spring:
+  datasource:
+    url : jdbc:mysql://localhost:3306/DB_SC_CAPSULE?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull&useSSL=true
+    username : showclear
+    password : showclear
+    driverClassName : com.mysql.jdbc.Driver
+    initialSize: 10
+    minIdle: 10
+    maxActive: 80
+    maxWai: 6000
+    removeAbandoned: true
+    removeAbandonedTimeout: 180
+
+  #模板引擎配置
+  thymeleaf:
+      prefix: classpath:/templates/
+      suffix: .html
+      mode: HTML5
+      encoding: UTF-8
+      content-type: text/html
+      cache: false
+
+  jpa:
+    database : MYSQL
+    show-sql : true
+    hibernate:
+      ddl-auto : update
+      naming-strategy : org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+      hibernate:
+        dialect : org.hibernate.dialect.MySQL5Dialect
+
+# 更多数据源
+custom:
+  datasource:
+      names: activiti
+      driverClassName : com.mysql.jdbc.Driver
+      initialSize: 10
+      minIdle: 10
+      maxActive: 80
+      maxWai: 6000
+      removeAbandoned: true
+      removeAbandonedTimeout: 180
+      activiti:
+        url : jdbc:mysql://localhost:3306/DB_SC_ACTIVITI?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull&useSSL=true
+        username : showclear
+        password : showclear
