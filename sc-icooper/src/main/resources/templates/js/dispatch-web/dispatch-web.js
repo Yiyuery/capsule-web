@@ -4,9 +4,15 @@
 require(["capsule","avalon","layer"],function(CapUtils){
 
     layer.config({
-        path: window.top.main.contextPath+'/js/lib/layer/' //layer.js所在的目录，可以是绝对目录，也可以是相对目录
+        path: contextPath+'/js/lib/layer/' //layer.js所在的目录，可以是绝对目录，也可以是相对目录
     });
-    console.log("contextPath:"+window.top.main.contextPath);
 
+    function init(){
+        $('body').html('<h4>Hello SpringBoot!</h4>')
+    }
+
+    $(document).ready(function(){
+        init();
+    });
 });
 

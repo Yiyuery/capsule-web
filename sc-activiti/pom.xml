@@ -47,16 +47,10 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- freemarker模板引擎 -->
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.boot</groupId>-->
-            <!--<artifactId>spring-boot-starter-freemarker</artifactId>-->
-        <!--</dependency>-->
-
-        <!-- thymeleaf模板引擎 -->
+         freemarker模板引擎
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+            <artifactId>spring-boot-starter-freemarker</artifactId>
         </dependency>
 
         <dependency>
