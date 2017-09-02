@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ScIcooperApplication {
+public class IcooperApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ScIcooperApplication.class, args);
+		SpringApplication.run(IcooperApplication.class, args);
 	}
 }

@@ -5,15 +5,40 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" type="text/css" href="${contextPath}/css/common/normalize.css">
+    <link rel="stylesheet" type="text/css" href="${contextPath}/css/dispatch-web/dispatcher.css">
     <script type="text/javascript">
         window.main = window.main || {};
         window.main.contextPath = '${contextPath}';
+        window.main.dispatch = {
+            token : "${sc_token}",
+            url : '${dispatchUrl}'
+        }
     </script>
-    <script type="text/javascript" href="${contextPath}/js/lib/require/require.js"></script>
-    <script type="text/javascript" href="${contextPath}/js/require-config.js"></script>
-    <script type="text/javascript" href="${contextPath}/js/dispatch-web/dispatch-web.js"></script>
+    <script type="text/javascript" src="${contextPath}/js/lib/require/require.js"></script>
+    <script type="text/javascript" src="${dispatchUrl}/dispatch-web/conf/requireConfig?var=dispatchRequireConfig"></script>
+    <script type="text/javascript" src="${contextPath}/js/require-config.js"></script>
+    <script type="text/javascript" src="${contextPath}/js/dispatch-web/dispatch-web.js"></script>
 </head>
 <body>
-Hello Word!
+    <h4>Hello SpringBoot!</h4>
+    <div class="dispatch-opts-container">
+        <div>
+            <button class="dispatch-btn" id="hang-up-call">挂断</button>
+            <button class="dispatch-btn">待定</button>
+            <button class="dispatch-btn">待定</button>
+        </div>
+    </div>
+
+    <!-- 视频控件 -->
+    <div class="video-container" id="video-ocx">
+
+    </div>
+
+    <!-- 接口测试日志 -->
+    <div class="dispatch-opts-log"></div>
+
+
 </body>
 </html>

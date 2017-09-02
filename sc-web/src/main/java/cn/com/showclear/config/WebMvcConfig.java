@@ -11,6 +11,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.ui.freemarker.FreeMarkerConfigurationFactory;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.*;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 
@@ -91,9 +93,17 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new ViewConfigInterceptor()).addPathPatterns("/view/**");
-        registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/**").
-                excludePathPatterns("/js/**","/css/**","/plugin/**","/image/**","/resource/**","/component/**");
-        super.addInterceptors(registry);
+//        registry.addInterceptor(new ViewConfigInterceptor()).addPathPatterns("/view/**");
+//        registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/**").
+//                excludePathPatterns("/js/**","/css/**","/plugin/**","/image/**","/resource/**","/component/**");
+//        super.addInterceptors(registry);
+    }
+
+    @Bean
+    public InternalResourceViewResolver internalResourceViewResolverviewResolver() {
+        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+        resolver.setViewClass(JstlView.class);
+        resolver.setOrder(2);
+        return resolver;
     }
 }
