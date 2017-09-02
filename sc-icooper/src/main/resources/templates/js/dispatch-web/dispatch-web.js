@@ -1,7 +1,7 @@
 /**
  * Created by Yiyuery on 2017/8/31.
  */
-require(["capsule", "dispatch-api", "avalon", "layer"], function (capUtils) {
+require(["capsule", "dispatch-api", "avalon", "layer","scooper.video"], function (capUtils) {
 
     layer.config({
         path: window.top.main.contextPath + '/js/lib/layer/' //layer.js所在的目录，可以是绝对目录，也可以是相对目录
@@ -22,7 +22,7 @@ require(["capsule", "dispatch-api", "avalon", "layer"], function (capUtils) {
             /**
              * 待打开视频ID
              */
-            devId:''
+            devId: ''
         }
     }
 
@@ -30,6 +30,9 @@ require(["capsule", "dispatch-api", "avalon", "layer"], function (capUtils) {
      * 初始化dom事件监听
      */
     function initEventListener() {
+        /**
+         * Web端操作挂断
+         */
         $('#hang-up-call').click(function () {
             if (globalHolder.current.tel == "") {
                 layer.msg("无电话可以挂断！");
@@ -38,12 +41,25 @@ require(["capsule", "dispatch-api", "avalon", "layer"], function (capUtils) {
             window.DispatchAPI.operations.hungUp(globalHolder.current.tel);
         });
 
-        $().click(function(){
+        /**
+         * 视频呼入
+         */
+        $('#video-call-accept').click(function () {
+            if (globalHolder.current.devId == '') {
+                return;
+            }
             $('#video-ocx').ScVideo({
-                method : 'playVideo',
-                args:[globalHolder.current.devId]
+                method: 'playVideo',
+                args: [globalHolder.current.devId]
             });
         })
+    }
+
+    /**
+     * 清除缓存数据
+     */
+    function clearCache() {
+        globalHolder.current.devId = '';
     }
 
     /**
@@ -90,6 +106,9 @@ require(["capsule", "dispatch-api", "avalon", "layer"], function (capUtils) {
             case "callInChanged" :
                 APITest.PHONE.callInTest(para.msg);
                 break;
+            case "changeConfigNotify":
+                APITest.PHONE.callWithVideoTest(para.msg);
+                break;
             default:
                 break;
         }
@@ -118,6 +137,21 @@ require(["capsule", "dispatch-api", "avalon", "layer"], function (capUtils) {
                     log("当前A呼入SYS电话：已挂断：" + msg.data.tel);
                     globalHolder.current.tel = "";
                 }
+            },
+            /**
+             * 视频呼入
+             * @param msg
+             */
+            callWithVideoTest: function (msg) {
+                if (msg.type == "decoder_info") {
+                    log(" 视频呼入 ：" + msg.value);
+                    globalHolder.current.tel = DispatchAPI.utils.parserVideoTel(msg.value);
+                    layer.msg("请点击按钮接入视频流...");
+                }
+                if (msg.type == "stop_decoder") {
+                    log("当前呼入视频电话：已挂断：" + msg.value);
+                    clearCache();
+                }
             }
         }
     }
@@ -125,14 +159,13 @@ require(["capsule", "dispatch-api", "avalon", "layer"], function (capUtils) {
     /**
      * 视频控件初始化
      */
-    function initVideoOcxPlugin(){
+    function initVideoOcxPlugin() {
         $('#video-ocx').ScVideo({
             autoPlay: false,
-            user:  'xcy',
-            password:'1',
-            server:'192.168.106.91',
-            port: '25100',
-            devId: devId
+            user: 'xcy',
+            password: '6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b',
+            server: '192.168.106.91',
+            port: '25100'
         });
     }
 

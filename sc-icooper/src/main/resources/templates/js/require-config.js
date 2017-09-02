@@ -21,6 +21,7 @@
              */
             capsule: 'lib/capsule/capsule.util',
             'dispatch-api':'dispatch-web/dispatch-api',
+            'scooper.video': 'scooper/scooper.video.base',
 
             /**
              * Scooper
