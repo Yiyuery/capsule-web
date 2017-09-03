@@ -1,0 +1,23 @@
+.dispatch-btn{
+    width: 102px;
+    height: 42px;
+    padding: 0;
+    border: 1px solid #c0e3fa;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -ms-broder-radius: 3px;
+    border-radius: 3px;
+    background-color: #def5fe;
+    margin:5px;
+}
+
+.video-container{
+    width:500px;
+    height:500px;
+    background:#dfdfdf;
+    border:1px solid #2E2D3C;
+}
+
+.dispatch-opts-container button:hover{
+    background-color: #FF9900;
+}
