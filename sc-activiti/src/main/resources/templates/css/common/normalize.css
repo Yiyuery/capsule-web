@@ -1,0 +1,73 @@
+@charset "UTF-8";
+*{padding: 0;margin: 0}
+div,p,ol,ul,h1,h2,h3,h4,h5,h6,body{
+padding:0;
+margin:0;
+font-weight: normal;
+}
+ul,li,ol,dd,dt{
+list-style:none;
+}
+a,a:link,a:visited,a:hover,a:active{
+text-decoration:none;
+}
+input,button {font-family: "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;}
+textarea{font-family: "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;resize: none;overflow: auto}
+button {  cursor: pointer;  outline: none;  }
+
+:before, :after, * {
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+box-sizing: border-box;
+}
+/* 为了避免未经处理的原始模板内容在页面载入时在页面中一闪而过  */
+.ms-controller, .ms-important, [ms-controller], [ms-important] {
+visibility: hidden;
+}
+body{
+color: #333;
+font-family: "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+overflow: hidden;
+background: #dfdfdf;
+}
+
+/*清除浮动*/
+.clearfix{*zoom:1;} /* 针对IE7 hack，触发IE7的haslayout，以清除浮动 */
+.clearfix:before,.clearfix:after{display:table;content:"";line-height:0;}
+.clearfix:after{clear:both;}
+
+/*滚动条样式*/
+::-webkit-scrollbar{width:8px;}
+::-webkit-scrollbar-track{background-color:#22262f;border-radius:4px;}
+::-webkit-scrollbar-thumb{background-color:#3b434e;border-radius:4px;}
+::-webkit-scrollbar-thumb:hover {background-color: #434b56  }
+::-webkit-scrollbar-thumb:active {background-color:#434b56}
+
+/*IE滚动条样式*/
+body {
+scrollbar-face-color:#434b56;
+scrollbar-track-color: #22262f;
+scrollbar-darkshadow-color:#22262f;
+scrollbar-shadow-color: #434b56;
+scrollbar-arrow-color: #434b56;
+}
+
+/*文字不被选中*/
+.unselectable{
+-webkit-user-select: none; /* Chrome all / Safari all */
+-moz-user-select: none; /* Firefox all */
+-ms-user-select: none; /* IE 10+ */
+-o-user-select: none;
+-khtml-user-select:none; /*早期浏览器*/
+user-select: none;
+}
+.unselectable:after {
+content: attr(data-content);
+}
+
+input::-ms-clear{display:none;}
+::-ms-clear, ::-ms-reveal{display: none;}
+input{
+-webkit-appearance:none;
+-o-appearance:none;
+}
