@@ -1,0 +1,11 @@
+/*左上角绝对定位*/
+.sc-layout-l-t{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+
+/*配置无边框属性*/
+.no-border{
+    border:none;
+}

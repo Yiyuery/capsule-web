@@ -51,6 +51,10 @@
         npm install -g lite-server
         lite-server
         
+    5、 动态监听ts文件(cmd*2)
+        tsc --watch
+        http://localhost:3000/html/activiti/activiti-navigation.html
+        
 # 静态界面搭建
 
     1、BootStrap 
