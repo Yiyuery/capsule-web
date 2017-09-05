@@ -14,61 +14,43 @@ define(["require", "exports", "avalon"], function (require, exports, avalon) {
          */
         current: 0,
         /**
-             * 导航Items数组
-             */
+         * 当前选中模块对应的子模块首页
+         */
+        url: './form-main.html',
+        /**
+         * 导航Items数组
+         */
         navs: [
             {
                 text: "表单管理",
                 nav_key: "form-manager",
-                url: "#"
+                url: "./form-main.html"
             },
             {
                 text: "流程管理",
                 nav_key: "proc-manager",
-                url: "#"
+                url: "./proc-manager/proc-manager.html"
             },
             {
                 text: "流程中心",
                 nav_key: "proc-center",
-                url: "#"
+                url: "./form-main.html"
             },
             {
                 text: "统计报表",
                 nav_key: "stat-report",
-                url: "#"
+                url: "./form-main.html"
             }
         ],
         /**
          * 头部导航点击事件
          */
-        clickNavItem: function (index) {
+        go: function (index) {
             var nav_key = this.navs[index]['nav_key'];
             this.current = index;
+            this.url = this.navs[index]['url'];
             console.log(nav_key);
         }
-    });
-    /**
-     * 核心模块
-     */
-    var coreModule = avalon.define({
-        '$id': 'coreModuleVMC',
-        modules: [
-            {
-                title: '在线设计表单',
-                desc: '在这里，您可以设计流程节点中的表单，主要用来动态管理流程中每个节点需要提交的数据信息。',
-                url: '#'
-            },
-            {
-                title: '表单管理',
-                desc: '在这里，您可以对表单进行增删查改操作，动态改变节点提交的表单参数定义，也可以预览表单效果。',
-                url: '#'
-            },
-            {
-                title: '表单映射',
-                desc: '在这里，你可以看到一个部署后的工作流中使用到了哪些表单，并在流程节点中通过点击节点直接预览该节点的表单配置信息。',
-                url: '#'
-            }
-        ]
     });
     avalon.ready(function () {
         avalon.scan(document.body);

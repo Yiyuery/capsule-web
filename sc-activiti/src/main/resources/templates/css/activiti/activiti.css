@@ -1,11 +1,43 @@
-/*左上角绝对定位*/
-.sc-layout-l-t{
-    position: absolute;
-    left: 0px;
-    top: 0px;
+@charset "utf-8";
+/*-------------------------------------------通用样式定义--------------------------------------------------------------------*/
+body,html{
+    margin:0;
+    padding:0;
+    height:100%;
+    width:100%;
 }
 
 /*配置无边框属性*/
 .no-border{
     border:none;
 }
+
+a{
+    cursor: pointer;
+}
+
+/*-------------------------------------------页面布局定义--------------------------------------------------------------------*/
+/*左上角绝对定位*/
+.sc-layout-l-t {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+/*上下布局 iframe高度自动计算*/
+.iframe-b-w{
+    width:100%;
+    height:-moz-calc(100% - 50px);
+    height:-webkit-calc(100% - 50px);
+    height:calc(100% - 50px);
+    position: relative;
+    top: 0px;
+    left: 0px;
+}
+
+.m-b_-40{
+    margin-bottom: -40px;
+}
+

@@ -2,122 +2,104 @@
 <html lang="zh-CN">
 
 <head>
-    <title>DispatchWeb</title>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>SC-ACTIVITI</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <link rel="stylesheet" type="text/css" href="/css/common/normalize.css">
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap/layoutit/layoutit.css">
-    <link rel="stylesheet" type="text/css" href="/css/activiti/activiti.css">
-    <script type="text/javascript">
-        window.main = window.main || {};
-        window.main.contextPath = '/';
-    </script>
-    <script type="text/javascript" src="/js/lib/require/require.js"></script>
-    <script type="text/javascript" src="/js/activiti/activiti-config.js"></script>
-    <script>
-        requirejs(['/js/activiti/activiti-navigation.js'])
-    </script>
+	<link rel="stylesheet" type="text/css" href="/css/common/normalize.css">
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap/layoutit/layoutit.css">
+	<link rel="stylesheet" type="text/css" href="/css/activiti/activiti.css">
+	<script type="text/javascript">
+		window.main = window.main || {};
+		window.main.contextPath = '/';
+	</script>
+	<script type="text/javascript" src="/js/lib/require/require.js"></script>
+	<script type="text/javascript" src="/js/activiti/activiti-config.js"></script>
+	<script>
+		requirejs(['/js/activiti/activiti-navigation.js'])
+	</script>
 </head>
 
 <body>
-    <div class="container sc-layout-l-t">
-	<div class="row clearfix">
-		<div class="col-md-12 column no-border">
-			<nav class="navbar navbar-default" role="navigation">
-				<div class="navbar-header">
-					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">Brand</a>
-				</div>
-				
-				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" ms-controller="topNavVMC">
-					<ul class="nav navbar-nav">
-						<li :class="index==@current ? 'active' : ''" ms-for="(index,el) in @navs">
-							 <a :attr="{href:el.url}" :click="@clickNavItem(index)">{{el.text}}</a>
-                        </li>
-                        <!-- 右侧下拉 -->
-						<li class="dropdown">
-							 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong class="caret"></strong></a>
-							<ul class="dropdown-menu">
-								<li>
-									 <a href="#">Action</a>
-								</li>
-								<li>
-									 <a href="#">Another action</a>
-								</li>
-								<li>
-									 <a href="#">Something else here</a>
-								</li>
-								<li class="divider">
-								</li>
-								<li>
-									 <a href="#">Separated link</a>
-								</li>
-								<li class="divider">
-								</li>
-								<li>
-									 <a href="#">One more separated link</a>
-								</li>
-							</ul>
-						</li>
-					</ul>
-					<div class="navbar-form navbar-left" role="search">
-						<div class="form-group">
-							<input type="text" class="form-control" />
-						</div> <button type="submit" class="btn btn-default">Submit</button>
+	<div class="container sc-layout-l-t"  ms-controller="topNavVMC">
+		<div class="row clearfix">
+			<div class="col-md-12 column no-border m-b_-40">
+				<nav class="navbar navbar-default" role="navigation">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>						<a class="navbar-brand" href="#">Brand</a>
 					</div>
-					<ul class="nav navbar-nav navbar-right">
-						<li>
-							 <a href="#">Link</a>
-						</li>
-						<li class="dropdown">
-							 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong class="caret"></strong></a>
-							<ul class="dropdown-menu">
-								<li>
-									 <a href="#">Action</a>
-								</li>
-								<li>
-									 <a href="#">Another action</a>
-								</li>
-								<li>
-									 <a href="#">Something else here</a>
-								</li>
-								<li class="divider">
-								</li>
-								<li>
-									 <a href="#">Separated link</a>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</div>
-				
-			</nav>
-			<div class="jumbotron">
-				<h1>
-					Hello, world!
-				</h1>
-				<p>
-					This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.
-				</p>
-				<p>
-					 <a class="btn btn-primary btn-large" href="#">Learn more</a>
-				</p>
+
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav">
+							<li :class="index==@current ? 'active' : ''" ms-for="(index,el) in @navs">
+								<a :click="@go(index)">{{el.text}}</a>
+							</li>
+							<!-- 右侧下拉 -->
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong class="caret"></strong></a>
+								<ul class="dropdown-menu">
+									<li>
+										<a href="#">Action</a>
+									</li>
+									<li>
+										<a href="#">Another action</a>
+									</li>
+									<li>
+										<a href="#">Something else here</a>
+									</li>
+									<li class="divider">
+									</li>
+									<li>
+										<a href="#">Separated link</a>
+									</li>
+									<li class="divider">
+									</li>
+									<li>
+										<a href="#">One more separated link</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<div class="navbar-form navbar-left" role="search">
+							<div class="form-group">
+								<input type="text" class="form-control" />
+							</div> <button type="submit" class="btn btn-default">Submit</button>
+						</div>
+						<ul class="nav navbar-nav navbar-right">
+							<li>
+								<a href="#">Link</a>
+							</li>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong class="caret"></strong></a>
+								<ul class="dropdown-menu">
+									<li>
+										<a href="#">Action</a>
+									</li>
+									<li>
+										<a href="#">Another action</a>
+									</li>
+									<li>
+										<a href="#">Something else here</a>
+									</li>
+									<li class="divider">
+									</li>
+									<li>
+										<a href="#">Separated link</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+
+				</nav>
+
 			</div>
 		</div>
-	</div>
-	<div class="row clearfix" :controller="coreModuleVMC">
-		<div class="col-md-4 column no-border" :for="(index,el) in modules">
-			<h2 :text="el.title"></h2>
-			<p :text="el.desc"></p>
-			<p>
-				 <a class="btn" :attr="{'href':el.url}">View details »</a>
-			</p>
-		</div>		
-	</div>
-</div>
 
+		<iframe :attr="{src:@url}" frameborder="0" class="iframe-b-w"></iframe>
+	</div>
 
 </body>
 

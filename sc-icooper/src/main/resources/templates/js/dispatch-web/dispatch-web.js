@@ -46,6 +46,7 @@ require(["capsule", "dispatch-api", "avalon", "layer","scooper.video"], function
          */
         $('#video-call-accept').click(function () {
             if (globalHolder.current.devId == '') {
+                log("视频呼入ID解析异常！");
                 return;
             }
             $('#video-ocx').ScVideo({
@@ -53,6 +54,17 @@ require(["capsule", "dispatch-api", "avalon", "layer","scooper.video"], function
                 args: [globalHolder.current.devId]
             });
         })
+
+        /**
+         * 视频取流测试
+         */
+        $('#open-video').click(function () {
+
+            $('#video-ocx').ScVideo({
+                method: 'playVideo',
+                args: [100]
+            });
+        });
     }
 
     /**
@@ -145,7 +157,7 @@ require(["capsule", "dispatch-api", "avalon", "layer","scooper.video"], function
             callWithVideoTest: function (msg) {
                 if (msg.type == "decoder_info") {
                     log(" 视频呼入 ：" + msg.value);
-                    globalHolder.current.tel = DispatchAPI.utils.parserVideoTel(msg.value);
+                    globalHolder.current.devId = DispatchAPI.utils.parserVideoTel(msg.value);
                     layer.msg("请点击按钮接入视频流...");
                 }
                 if (msg.type == "stop_decoder") {
