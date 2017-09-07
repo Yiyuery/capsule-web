@@ -16,7 +16,7 @@ var topNav = avalon.define({
     /**
      * 当前选中模块对应的子模块首页
      */
-    url: './form-main.html',
+    url: './form-manager/form-main.html',
     /**
      * 导航Items数组
      */
@@ -24,7 +24,7 @@ var topNav = avalon.define({
         {
             text: "表单管理",
             nav_key: "form-manager",
-            url: "./form-main.html"
+            url: "./form-manager/form-main.html"
         },
         {
             text: "流程管理",
@@ -34,12 +34,12 @@ var topNav = avalon.define({
         {
             text: "流程中心",
             nav_key: "proc-center",
-            url: "./form-main.html"
+            url: "./proc-manager/proc-manager.html"
         },
         {
             text: "统计报表",
             nav_key: "stat-report",
-            url: "./form-main.html"
+            url: "./proc-manager/proc-manager.html"
         }
     ],
     /**
