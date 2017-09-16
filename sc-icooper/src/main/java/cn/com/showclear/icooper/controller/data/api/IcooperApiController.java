@@ -1,4 +1,6 @@
 package cn.com.showclear.icooper.controller.data.api;
+import cn.showclear.msg.queue.service.mqtt.manage.MqttManagerImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,5 +20,9 @@ public class IcooperApiController {
     public String hello(){
         return "Hello Master! Here is sc-icooper";
     }
+
+
+    @Autowired
+    MqttManagerImpl mqttManager;
 
 }

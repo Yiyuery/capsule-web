@@ -92,8 +92,11 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new ViewConfigInterceptor()).addPathPatterns("/view/**");
-        registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/**").
+        registry.addInterceptor(newLoginInterceptor()).addPathPatterns("/**").
                 excludePathPatterns("/js/**","/css/**","/plugin/**","/image/**","/resource/**","/component/**");
         super.addInterceptors(registry);
     }
+
+
+
 }

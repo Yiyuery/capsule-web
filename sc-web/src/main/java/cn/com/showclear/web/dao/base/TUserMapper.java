@@ -1,4 +1,4 @@
-package cn.com.showclear.web.dao.capsule;
+package cn.com.showclear.web.dao.base;
 
 import cn.com.showclear.activiti.pojo.capsule.TUser;
 

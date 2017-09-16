@@ -9,7 +9,7 @@ server:
 # 其中主数据源在Spring中的beanName默认为dataSource
 spring:
   datasource:
-    url : jdbc:mysql://localhost:3306/DB_SC_CAPSULE?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull&useSSL=true
+    url : jdbc:mysql://localhost:3306/DB_SC_BASE?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull&useSSL=true
     username : showclear
     password : showclear
     driverClassName : com.mysql.jdbc.Driver
@@ -45,3 +45,10 @@ custom:
         url : jdbc:mysql://localhost:3306/DB_SC_ACTIVITI?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull&useSSL=true
         username : showclear
         password : showclear
+
+
+# Apollo 配置
+apollo:
+  url: tcp://192.168.106.45:61613
+  reconnectTime: 10
+  msgQueueSize: 100

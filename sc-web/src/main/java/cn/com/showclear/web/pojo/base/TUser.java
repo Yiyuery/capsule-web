@@ -1,4 +1,4 @@
-package cn.com.showclear.web.pojo.capsule;
+package cn.com.showclear.web.pojo.base;
 
 public class TUser {
     private Integer id;
