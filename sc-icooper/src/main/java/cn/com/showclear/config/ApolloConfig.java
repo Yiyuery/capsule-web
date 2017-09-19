@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
  * @author YF-XIACHAOYANG
  * @date 2017/9/13 9:58
  */
-@Configuration
+//@Configuration
 public class ApolloConfig {
 
     @Value("${apollo.url}")
@@ -64,9 +64,10 @@ public class ApolloConfig {
 //        msgListener.add(new ApolloMsgListener());
 //        mqttManger.setMsgListeners(msgListener);
 
-        /**
-         * 连接
-         */
+
+            /**
+             * 连接
+             */
         mqttManger.connect();
         return mqttManger;
     }

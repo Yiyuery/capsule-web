@@ -10,16 +10,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @date 2017/8/31 18:36
  */
 @Controller
-@RequestMapping("/view/activiti/")
+@RequestMapping("/view/activiti")
 public class ActivitiViewController {
 
     /**
      * 头部导航界面
      * @return
      */
-    @RequestMapping("head")
-    public String disPatchWebTest(){
-        return "/html/activiti/activiti-head.html";
+    @RequestMapping("/")
+    public String index(){
+        return "/html/activiti/activiti-test.html";
     }
 
 }

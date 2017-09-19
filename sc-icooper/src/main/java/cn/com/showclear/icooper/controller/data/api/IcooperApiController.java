@@ -20,9 +20,4 @@ public class IcooperApiController {
     public String hello(){
         return "Hello Master! Here is sc-icooper";
     }
-
-
-    @Autowired
-    MqttManagerImpl mqttManager;
-
 }
