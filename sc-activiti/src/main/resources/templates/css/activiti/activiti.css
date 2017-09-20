@@ -37,7 +37,11 @@ a{
     left: 0px;
 }
 
-.relatice-top-30{
+.relatice-top-10{
     position: relative;
-    top: 30px;
+    top: 10px;
+}
+
+.m-b_-30{
+    margin-bottom: -30px;
 }
