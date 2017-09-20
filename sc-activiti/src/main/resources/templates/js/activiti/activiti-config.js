@@ -1,8 +1,7 @@
 /**
  * Created by Yiyuery on 2017/8/31.
  */
-//var rootPath = window.top.main.contextPath;
-var rootPath = '';
+var rootPath = window.top.main.contextPath;
 (function () {
     requirejs.config({
         baseUrl: rootPath + '/js/',

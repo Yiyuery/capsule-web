@@ -16,7 +16,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 
         //获取请求的URL
         String url = request.getRequestURI();
-        if(url.equals("/sc-web")  || url.indexOf("login") > -1){
+        if(url.equals("/sc-web")  || url.indexOf("sc-web") > -1){
             return true;
         }
         return true;

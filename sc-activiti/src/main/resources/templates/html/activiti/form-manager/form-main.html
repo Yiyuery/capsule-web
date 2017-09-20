@@ -6,15 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="/css/common/normalize.css">
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap/layoutit/layoutit.css">
-    <link rel="stylesheet" type="text/css" href="/css/activiti/activiti.css">
-
-    <script type="text/javascript" src="/js/lib/require/require.js"></script>
-    <script type="text/javascript" src="/js/activiti/activiti-config.js"></script>
+    <link rel="stylesheet" type="text/css" href="${contextPath}/css/common/normalize.css">
+    <link rel="stylesheet" type="text/css" href="${contextPath}/css/bootstrap/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="${contextPath}/css/bootstrap/layoutit/layoutit.css">
+    <link rel="stylesheet" type="text/css" href="${contextPath}/css/activiti/activiti.css">
+    
+    <script type="text/javascript" src="${contextPath}/js/lib/require/require.js"></script>
+    <script type="text/javascript" src="${contextPath}/js/activiti/activiti-config.js"></script>
     <script>
-        requirejs(['/js/activiti/form-manager/form-main.js'])
+        requirejs(['${contextPath}/js/activiti/form-manager/form-main.js'])
     </script>
 </head>
 
