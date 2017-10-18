@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>ZACSNZ</title>
+
+	<link rel="stylesheet" type="text/css" href="${contextPath}/css/common/normalize.css">
+	<link rel="stylesheet" type="text/css" href="${contextPath}/css/gis/gis.css">
+
+	<script type="text/javascript">
+		window.main = window.main || {};
+		window.main.contextPath = '${contextPath}';
+</script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&amp;ak=6mNBvPUn8yeTBH7taBqoBGtmQiSLQpFt"></script>
+</head>
+
+<body>
+	<!-- IP定位  -->
+	<div class="map-container" ms-controller="mapVMC">
+		<!--地图容器  -->
+		<div class="map-area" id="mapArea"></div>
+		<!--地图操作  -->
+		<div class="map-operations hide"></div>
+		<!-- 遮罩地址  -->
+		<!-- <iframe src="@linkSrc" frameborder="0" class="link-res-iframe hide"></iframe> -->
+	</div>
+
+</body>
+
+<script type="text/javascript" src="${contextPath}/js/lib/require/require.js"></script>
+<script type="text/javascript" src="${contextPath}/js/web-config.js"></script>
+<script>
+		requirejs(['${contextPath}/js/gis/remote-location.js'])
+</script>
+
+</html>
