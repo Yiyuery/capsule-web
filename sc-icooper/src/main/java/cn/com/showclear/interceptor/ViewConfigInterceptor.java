@@ -20,7 +20,8 @@ import javax.servlet.http.HttpServletResponse;
  * 为 view 设置 配置 属性
  */
 public class ViewConfigInterceptor extends HandlerInterceptorAdapter {
-	
+
+	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		//设置contextPath路径
 		request.setAttribute("contextPath", request.getContextPath());

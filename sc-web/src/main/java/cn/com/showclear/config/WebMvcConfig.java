@@ -27,6 +27,7 @@ import java.util.Properties;
 @EnableScheduling
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
+    @Override
     public void configurePathMatch(PathMatchConfigurer configurer) {
         super.configurePathMatch(configurer);
     }

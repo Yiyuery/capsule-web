@@ -23,7 +23,7 @@ public class DataSourceInterceptor {
     public void dataSourceCapsule(){};
 
     @Before("dataSourceCapsule()")
-    public void beforeWeb(JoinPoint jp) {
+    public void beforeCapsule(JoinPoint jp) {
         DataSourceTypeManager.set(DataSources.CAPSULE);
     }
 
