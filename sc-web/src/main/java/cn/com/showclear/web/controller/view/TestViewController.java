@@ -12,11 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/view/test")
 public class TestViewController {
 
-    
 
-    @RequestMapping("zhihu/jquery/main")
+    /**
+     * 知乎 > jQuery
+     * @return
+     */
+    @RequestMapping("/zhihu/jquery")
     public String jqueryTestView() {
-        return "/html/gis/remote-location.html";
+        return "/html/zhihu/jquery-test.html";
     }
 
 }
