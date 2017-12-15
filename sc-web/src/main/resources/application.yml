@@ -47,7 +47,7 @@ custom:
         password : showclear
 
 
-# Apollo 配置
+# Apollo 配置 for sc-icooper
 apollo:
   url: tcp://192.168.106.45:61613
   reconnectTime: 10

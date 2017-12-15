@@ -4,14 +4,24 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * Created by Yiyuery on 2017/10/18.
+ * web视图控制器
+ * @author YF-XIACHAOYANG
+ * @date 2017/12/15 17:33
  */
 @Controller
 @RequestMapping("/view/web/")
 public class WebViewController {
 
-    @RequestMapping("remoteLocationView")
-    public String remoteLocationView(){
+    /*--------------------------------------------
+            GIS 相关
+    --------------------------------------------*/
+
+    /**
+     * GIS 浏览器定位
+     * @return
+     */
+    @RequestMapping("gis/remoteLocationView")
+    public String remoteLocationView() {
         return "/html/gis/remote-location.html";
     }
 

@@ -29,7 +29,7 @@
 	<dependencies>
 
 		<!-- 添加模块间依赖 -->
-		<dependency>
+		<!--<dependency>
 			<groupId>cn.com.showclear</groupId>
 			<artifactId>activiti</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
@@ -41,7 +41,7 @@
 			<artifactId>icooper</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 			<type>war</type>
-		</dependency>
+		</dependency>-->
 
 
 		<!-- mysql -->
@@ -136,7 +136,7 @@
 			</plugin>
 
 			<!-- 合并编译打包 -->
-			<plugin>
+			<!--<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
 				<configuration>
@@ -152,7 +152,7 @@
 					</overlays>
 					<warName>sc-web</warName>
 				</configuration>
-			</plugin>
+			</plugin>-->
 
 		</plugins>
 	</build>
